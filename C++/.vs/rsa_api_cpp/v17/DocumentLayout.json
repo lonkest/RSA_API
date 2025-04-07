@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2E2016A3-F741-41DB-9643-A524E171C3D8}|rsa_api_cpp\\rsa_api_cpp.vcxproj|C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2E2016A3-F741-41DB-9643-A524E171C3D8}|rsa_api_cpp\\rsa_api_cpp.vcxproj|solutionrelative:rsa_api_cpp\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E2016A3-F741-41DB-9643-A524E171C3D8}|rsa_api_cpp\\rsa_api_cpp.vcxproj|C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\consumers.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2E2016A3-F741-41DB-9643-A524E171C3D8}|rsa_api_cpp\\rsa_api_cpp.vcxproj|solutionrelative:rsa_api_cpp\\consumers.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E2016A3-F741-41DB-9643-A524E171C3D8}|rsa_api_cpp\\rsa_api_cpp.vcxproj|C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\rsa_cpp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2E2016A3-F741-41DB-9643-A524E171C3D8}|rsa_api_cpp\\rsa_api_cpp.vcxproj|solutionrelative:rsa_api_cpp\\rsa_cpp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\main.cpp",
+              "RelativeDocumentMoniker": "rsa_api_cpp\\main.cpp",
+              "ToolTip": "C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\main.cpp",
+              "RelativeToolTip": "rsa_api_cpp\\main.cpp",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-02-29T09:45:18.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "consumers.cpp",
+              "DocumentMoniker": "C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\consumers.cpp",
+              "RelativeDocumentMoniker": "rsa_api_cpp\\consumers.cpp",
+              "ToolTip": "C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\consumers.cpp",
+              "RelativeToolTip": "rsa_api_cpp\\consumers.cpp",
+              "ViewState": "AgIAAI0BAAAAAAAAAAAUwKkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-07T10:26:32.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "rsa_cpp.h",
+              "DocumentMoniker": "C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\rsa_cpp.h",
+              "RelativeDocumentMoniker": "rsa_api_cpp\\rsa_cpp.h",
+              "ToolTip": "C:\\Itai_Work\\RSA_API\\C\u002B\u002B\\rsa_api_cpp\\rsa_cpp.h",
+              "RelativeToolTip": "rsa_api_cpp\\rsa_cpp.h",
+              "ViewState": "AgIAAAgAAAAAAAAAAAArwCQAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-07T10:26:11.491Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

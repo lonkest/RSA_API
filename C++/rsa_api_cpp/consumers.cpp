@@ -66,7 +66,7 @@ Spectrum_Settings config_spectrum(double cf, double refLevel, double span, doubl
 	SPECTRUM_SetEnable(true);
 	CONFIG_SetCenterFreq(cf);
 	CONFIG_SetReferenceLevel(refLevel);
-	
+
 	SPECTRUM_SetDefault();
 	Spectrum_Settings specSet;
 	SPECTRUM_GetSettings(&specSet);
@@ -74,7 +74,7 @@ Spectrum_Settings config_spectrum(double cf, double refLevel, double span, doubl
 	specSet.rbw = rbw;
 	SPECTRUM_SetSettings(specSet);
 	SPECTRUM_GetSettings(&specSet);
-	
+
 	return specSet;
 }
 
@@ -83,9 +83,9 @@ double* create_frequency_array(Spectrum_Settings specSet)
 	double* freq = NULL;
 	int n = specSet.traceLength;
 	freq = new double[n];
-	for (int i=0; i < specSet.traceLength; i++)
+	for (int i = 0; i < specSet.traceLength; i++)
 	{
-		freq[i] = specSet.actualStartFreq + specSet.actualFreqStepSize*i;
+		freq[i] = specSet.actualStartFreq + specSet.actualFreqStepSize * i;
 	}
 
 	return freq;
@@ -102,7 +102,7 @@ float* acquire_spectrum(Spectrum_Settings specSet)
 	float* traceData = NULL;
 	int n = maxTracePoints;
 	traceData = new float[n];
-	
+
 	DEVICE_Run();
 	SPECTRUM_AcquireTrace();
 	while (ready == false)
@@ -154,7 +154,7 @@ void spectrum_example()
 	traceData = acquire_spectrum(specSet);
 	freq = create_frequency_array(specSet);
 	peakIndex = peak_power_detector(traceData, freq, specSet);
-	
+
 	cout << "Start frequency: " << freq[0] << endl;
 	cout << "Center frequency: " << freq[(specSet.traceLength - 1) / 2] << endl;
 	cout << "Stop frequency: " << freq[specSet.traceLength - 1] << endl;
@@ -191,10 +191,10 @@ double* config_block_iq(double cf, double refLevel, double iqBw, int recordLengt
 	err_check(rs);
 
 	//simple C++ implementation of numpy.linspace()
-	double step = recordLength/iqSampleRate/(recordLength-1);
+	double step = recordLength / iqSampleRate / (recordLength - 1);
 	for (int i = 0; i < recordLength; i++)
 	{
-		time[i] = i*step;
+		time[i] = i * step;
 	}
 
 	return time;
@@ -232,7 +232,7 @@ void block_iq_example()
 	Cplx32* iqData = NULL;
 
 	time = config_block_iq(cf, refLevel, iqBw, recordLength);
-	iqData = acquire_block_iq(recordLength); 
+	iqData = acquire_block_iq(recordLength);
 	cout << "Disconnecting." << endl;
 	cout << "Also this is boring because I can't plot anything." << endl;
 
@@ -300,12 +300,12 @@ void dpx_example()
 	acquire_dpx(&fb);
 	cout << "\nFFTs in frame: " << fb.fftCount << endl;
 	cout << "DPX FrameBuffers acquired: " << fb.frameCount << endl;
-	cout << "DPX Bitmap is "<< fb.spectrumBitmapWidth << 
+	cout << "DPX Bitmap is " << fb.spectrumBitmapWidth <<
 		" x " << fb.spectrumBitmapHeight << " pixels." << endl;
 	cout << "DPX Spectrogram is " << fb.sogramBitmapWidth <<
 		" x " << fb.sogramBitmapHeight << " pixels." << endl;
 	cout << "Valid traces in spectrogram: " << fb.sogramBitmapNumValidLines << endl;
-	
+
 	cout << "Disconnecting." << endl;
 	DEVICE_Disconnect();
 
@@ -348,7 +348,7 @@ void if_stream_example()
 	}
 	DEVICE_Stop();
 	cout << "Streaming finished." << endl;
-	
+
 	cout << "Disconnecting." << endl;
 	DEVICE_Disconnect();
 
@@ -363,13 +363,17 @@ void config_iq_stream(double cf, double refLevel, double bw, char* fileName, IQS
 	double sampleRate = 0;
 	CONFIG_SetCenterFreq(cf);
 	CONFIG_SetReferenceLevel(refLevel);
-
+	int block_size = 1000000;
+	IQSTREAM_SetIQDataBufferSize(block_size);
+	IQSTREAM_GetIQDataBufferSize(&block_size);
+	printf("block size %d \r\n", block_size);
 	IQSTREAM_SetAcqBandwidth(bw);
 	IQSTREAM_SetOutputConfiguration(dest, IQSODT_INT16);
 	IQSTREAM_SetDiskFilenameBase(fileName);
 	IQSTREAM_SetDiskFilenameSuffix(suffixCtl);
 	IQSTREAM_SetDiskFileLength(durationMsec);
 	IQSTREAM_GetAcqParameters(&bwActual, &sampleRate);
+	cout << "sampleRate : " << sampleRate << "   bandwidth" << bwActual << endl;
 }
 
 void iqstream_status_parser(uint32_t acqStatus)
@@ -405,18 +409,19 @@ void iqstream_status_parser(uint32_t acqStatus)
 	}
 }
 
-void iq_stream_example()
+void iq_stream_example(double arg_time, double freq, double bw)
 {
 	search_connect();
-	double cf = 2.4453e9;
-	double refLevel = -30;
-	
-	double bw = 40e6;
-	IQSOUTDEST dest = IQSOD_FILE_SIQ;
+	double cf = freq;
+
+	double refLevel = -50;
+	printf("time , freq %lf %lf \r\n", arg_time, freq);
+	IQSOUTDEST dest = IQSOD_FILE_SIQ_SPLIT;
 	int suffixCtl = -2;
-	int durationMsec = 2000;
+	int durationMsec = arg_time;
 	int waitTime = 10;
-	char* fileName = "C:\\SignalVu-PC Files\\iq_stream_test";
+	//char* fileName = "C:\\\\rf_code_injection\\screaming_channels_gal\\decrypt_rf_project\\iq_stream_test";
+	char* fileName = "C:\\Itai_Work\\Recording_Signals\\iq_stream_test";
 	IQSTRMFILEINFO iqStreamInfo;
 
 	bool complete = false;
@@ -438,9 +443,6 @@ void iq_stream_example()
 
 	cout << "Disconnecting." << endl;
 	DEVICE_Disconnect();
-
-	//Stop the program so we can see printouts
-	system("pause");
 }
 
 
@@ -459,13 +461,13 @@ void if_playback()
 	const char* fileName = "C:\\SignalVu-PC Files\\if_stream_test.r3f";
 	wchar_t wFileName[300];
 	swprintf(wFileName, 300, L"%S", fileName);   // %S is 1-byte-char type for sWprintf
-	
+
 	FILE* fp = _wfopen(wFileName, L"rb");
 	if (fp == NULL)
 	{
 		printf("Error Opening File: \"%S\"\n", wFileName);
 	}
-	
+
 	int start = 0;
 	int stop = 100;
 	double skip = 0;
